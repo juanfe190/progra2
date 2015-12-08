@@ -6,14 +6,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import serverproyectoprogra.Util;
 
 public class modifyComputers {
@@ -26,9 +25,11 @@ public class modifyComputers {
             }
     }
     
-    public void deleteComputer(String ip) throws IOException{
+    public void deleteComputer(String ip) throws IOException, Exception{
             FileWriter writer = null;
             Scanner sc = null;
+            boolean found=false;
+            if(!computerExists(ip)) throw new Exception("La computadora no existe");
         try {
             File file = new File(Util.computersDir);
             sc = new Scanner(file);
@@ -41,11 +42,8 @@ public class modifyComputers {
                     String inputIP=scLine.trim().split(",")[0];
                     if(scLine!=null && !inputIP.equals(ip))
                         inputData+=scLine+System.getProperty("line.separator");
-                    
-                    
                 }catch(NoSuchElementException ex){break;}
             } while (scLine!=null);
-            
             writer = new FileWriter(file, false);
             writingData+=System.getProperty("line.separator")+inputData;
             writer.write(writingData);
