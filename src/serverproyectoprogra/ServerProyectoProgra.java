@@ -1,6 +1,6 @@
 package serverproyectoprogra;
 
-import Functionality.modifyComputers;
+import computersManager.modifyComputers;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +15,7 @@ public class ServerProyectoProgra {
             Logger.getLogger(ServerProyectoProgra.class.getName()).log(Level.SEVERE, null, ex);
         }
         modifier.setPrice("4000");
+        
     }
     
 }

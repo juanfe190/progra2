@@ -7,4 +7,7 @@ public class Util {
     public static final int sinConexion = 0;
     public static final int enUso = 1;
     public static final int enEspera = 2;
+    
+    //Puerto server
+    public static final int puerto=3030;
 }

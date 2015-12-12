@@ -1,4 +1,6 @@
-package Functionality;
+package computersManager;
+
+
 
 import Models.computerModel;
 import java.io.File;
@@ -12,7 +14,6 @@ import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import serverproyectoprogra.Util;
 
 public class modifyComputers {
@@ -164,5 +165,33 @@ public class modifyComputers {
             writer.close();
             sc.close();
         }
+    }
+    
+    public computerModel findComputer(String ip){
+         File file = new File(Util.computersDir);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+            String scLine;
+            do {     
+                scLine = sc.nextLine();
+                if(scLine!=null){
+                    String data[]=scLine.trim().split(",");
+                    if(data[0].equals(ip)){
+                        return new computerModel(data[0], data[1]);
+                    }
+                }
+                
+            } while (scLine!=null);
+        }catch(NoSuchElementException ex){} 
+         catch (FileNotFoundException ex) {
+            System.out.println("ARCHIVO NO ENCONTRADO");
+            System.err.println(ex);
+        }finally{ 
+            sc.close();
+        }
+        
+        
+        return null;
     }
 }
